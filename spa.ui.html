@@ -1,0 +1,119 @@
+<html>
+<head>
+  <title>port 2323: Chat with socket.io and node.js</title>
+  <style>
+    #chat{
+      height: 90%;
+      
+    }
+    
+    #contentWrap{
+      display: none;
+    }
+    
+    #chatWrap{
+      float: right;
+      border: 3px #99erff dotted;
+      background-color: #99FF99;
+    }
+
+    #nickWrap{
+      float: left;
+
+    }
+
+    #mebackground{
+      background-color: #fe8022;
+    }
+  </style>
+</head>
+<body>
+  <div id="nickWrap">
+    <p>Enter a username:</p>
+    <p id="nickError"></p>
+    <form id="setNick">
+      <input size="35" id="nickname"></input>
+      <input type="submit" value="Enter"></input>   
+    </form>
+  </div>
+  
+  <div id="contentWrap">
+    <div id="chatWrap">
+      <div id="chat" > </div>
+        <form id="send-message">
+          <input type="text" size="35" id="message"></input>
+          <input type="submit" value="Send"></input>
+        </form>
+      </div>
+    <div id="users">
+      
+    </div>
+  </div>
+  
+
+  
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  
+  <script>
+    jQuery(function($){
+      var socket = io.connect();
+      
+      //nickname form handle
+      var $nickForm=$('#setNick');
+      var $nickError = $('#nickError');
+      var $nickBox = $('#nickname');
+      var $users = $('#users');
+      
+      //message box handle
+      var $messageForm = $('#send-message');
+      var $messageBox = $('#message');
+      var $chat = $('#chat');
+      
+      //nickname form handler
+      $nickForm.submit(function(e){
+        e.preventDefault(); //prevent the default behavior
+        socket.emit('new user', $nickBox.val(), function(data){
+          if(data){
+            $('#nickWrap').hide();
+            $('#contentWrap').show();
+          }else{
+            $nickError.html('The user name you entered was taken. Try again.');
+          }
+          
+        });
+        $nickBox.val('');
+      });
+      
+      //show user name list 
+      socket.on('usernames', function(data){
+        //show the array
+        var userlist= '';
+        for(i = 0 ; i<data.length; i++){
+          userlist += data[i] + '<br/>';
+        }
+
+        $users.html(userlist);
+
+      });
+//message box handler
+      $messageForm.submit(function(e){
+        e.preventDefault(); //no need to refresh the page
+        socket.emit('send message', $messageBox.val());
+        $messageBox.val('');
+      });
+      
+
+      //receive from client-side (show nickname and message)
+      socket.on('new message', function(data){
+        //display the message
+        $chat.append('<b>' + data.userid + ':</b> ' + data.msg + "<br/>");
+
+      });
+    });
+    
+    
+  </script>
+  
+</body>
+</html>

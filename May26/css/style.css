@@ -1,0 +1,131 @@
+body {
+  width    : 100%;
+  height   : 100%;
+  overflow : hidden;
+  background-color: #efefef;
+  font-family: Monospace;
+  position: relative;
+}
+
+#spa {
+  position : absolute;
+  top      : 8px;
+  left     : 8px;
+  bottom   : 8px;
+  right    : 8px;
+  border-radius    : 8px 8px 0 8px;
+  background-color : #fff;
+}
+
+.spa-slider {
+  position : absolute;
+  bottom   : 0;
+  right    : 2px;
+  width    : 45%;
+  height   : 16px;
+  cursor   : pointer;
+  border-radius    : 8px 0 0 0;
+  background-color : #ef5050; //pinkish color
+}
+
+
+/*  socket style */
+#chat{
+  height: 90%;
+  width: 40em;
+  max-width: 50em;
+  overflow:scroll;
+  overflow-x: hidden;
+}
+
+#contentWrap{
+  display: none;
+  margin: 0.5em;
+
+  border-radius    : 8px 8px 5px 8px;
+
+
+}
+
+#chatWrap{
+  float: right;
+  height: 95%;
+  /*border: 3px #99erff dotted;*/
+  /*background-color: #ef5050; /*pinkish red */
+  background-image: url("/img/blur-background2.jpg");
+  padding: 1em 1em 1em 1em;
+  background-size: cover;
+  margin: 0.5em;
+  border-radius    : 8px 8px 0 8px;
+
+  
+}
+
+#nickWrap{
+  position : absolute;
+  top      : 8px;
+  left     : 8px;
+  bottom   : 8px;
+  right    : 8px;
+  border-radius    : 8px 8px 0 8px;
+  background-image: url("/img/blur-background1.jpg");
+  background-size:cover;
+
+  /*background-color : #fff;*/
+}
+
+#mebackground{
+  background-color: #fe8022;
+}
+
+.col-centered{
+    float: none;
+    margin: 10em 15em;
+}
+
+#message{
+  width   : 70%;
+  display : inline-block;
+  
+}
+
+#sendMSG{
+  width: 25%;
+  display: inline-block;
+}
+
+
+
+#xButton{
+}
+
+#time{
+  color: #ffeeff;
+  font-size: 0.8em;
+  display: inline-block;
+}
+
+#msg{
+  
+}
+
+#userIDline{
+  color: #ffff00;
+}
+
+#users{
+  float: none;
+  color: #ee56e9;
+}
+
+#loginp{
+  color: #fff;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+#myID{
+  
+  font-weight: 200;
+  font-size: 1.2em;
+}
